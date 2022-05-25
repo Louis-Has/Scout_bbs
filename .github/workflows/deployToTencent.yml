@@ -34,9 +34,9 @@ jobs:
           cache: 'pnpm'
 
       - name: Install npm dependencies
-        run: npm install
+        run: pnpm install
       - name: Run build task
-        run: npm run build
+        run: pnpm run build
 
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v2.1.5

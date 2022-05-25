@@ -41,7 +41,7 @@ jobs:
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v2.1.5
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.TENCENT_TEST }}
+          SSH_PRIVATE_KEY: ${{ secrets.Tencent }}
           ARGS: "-rltgoDzvO --delete"
           REMOTE_HOST: "43.142.47.50" # 你的阿里云公网地址
           REMOTE_USER: ubuntu # 阿里云登录后默认为 root 用户，并且所在文件夹为 root

@@ -46,5 +46,5 @@ jobs:
           REMOTE_HOST: "43.142.47.50" # 你的阿里云公网地址
           REMOTE_USER: ubuntu # 阿里云登录后默认为 root 用户，并且所在文件夹为 root
           SOURCE: bbs_next # 这是要复制到阿里云静态服务器的文件夹名称
-          TARGET: /root/bbs_dist # 打包后的 dist 文件夹
+          TARGET: /ubuntu/bbs_dist # 打包后的 dist 文件夹
 

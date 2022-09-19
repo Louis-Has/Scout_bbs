@@ -27,9 +27,9 @@ jobs:
 
       - name: Build the Docker image
         run: |
-          docker login -u="scoutszz"  -p="Wyhxi0804"
+          docker login -u=${{ secrets.DOCKER_USERNAME }}  -p="Wyhxi0804"
           docker compose -f docker-compose.prod.yml build
-          docker push ${{ secrets.DOCKER_USERNAME }}/next-app-prod
+          docker push scoutszz/next-app-prod
 
 
 #      - uses: pnpm/action-setup@v2

@@ -1,8 +1,9 @@
 version: '3'
 
 services:
-  next-app:
-    container_name: next-app
+  next-app-dev:
+    image: next-app-dev
+    container_name: next-app-dev
     build:
       context: ./next-app
       dockerfile: dev.Dockerfile

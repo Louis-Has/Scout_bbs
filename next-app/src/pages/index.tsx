@@ -1,8 +1,19 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import Image from 'next/image';
+import styles from '../styles/Home.module.scss';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper';
+import classNames from 'classnames/bind';
+import { useEffect, useState } from 'react';
+import { Button } from 'antd';
 
 export default function Home() {
+
+  const cn = classNames.bind(styles);
+
+  const [queryDate, setQueryData] = useState<any[]>([]);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -11,48 +22,22 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js</a> on Docker Compose!
-        </h1>
 
-        <p>now let's fell the pity le</p>
-        <p>why the node is wrong</p>
+
+        <Button   type="primary"       >dsda</Button>
+
+
 
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.tsx</code>
         </p>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
       </main>
+
+
+
 
       <footer className={styles.footer}>
         <a
@@ -67,5 +52,5 @@ export default function Home() {
         </a>
       </footer>
     </div>
-  )
+  );
 }

@@ -1,3 +1,5 @@
+@import '~antd/dist/antd.css';
+
 html,
 body {
   padding: 0;
@@ -13,4 +15,9 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+/*  change Antd primary color */
+.ant-btn-primary {
+  background-color: blue;
 }

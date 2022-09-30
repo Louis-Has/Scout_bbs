@@ -27,23 +27,9 @@ jobs:
 
       - name: Build the Docker image
         run: |
-          docker login -u=${{ secrets.DOCKER_USERNAME }}  -p="Wyhxi0804"
+          docker login -u=${{ secrets.DOCKER_USERNAME }}   --password-stdin=${{ secrets.DOCKER_PASSWORD }}
           docker compose -f docker-compose.prod.yml build
-          docker push scoutszz/next-app-prod
-
-
-#      - uses: pnpm/action-setup@v2
-#        with:
-#          version: 6.32.9
-#      - uses: actions/setup-node@v3
-#        with:
-#          node-version: '14'
-#          cache: 'pnpm'
-#
-#      - name: Install npm dependencies
-#        run: pnpm install
-#      - name: Run build task
-#        run: pnpm run build
+          docker push ${{ secrets.DOCKER_USERNAME }}/next-app-prod
 
 #      - name: Deploy to Server
 #        uses: easingthemes/ssh-deploy@v2.1.5

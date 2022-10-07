@@ -27,7 +27,7 @@ jobs:
 
       - name: Build the Docker image
         run: |
-          docker login -u=${{ secrets.DOCKER_USERNAME }}   --password-stdin=${{ secrets.DOCKER_PASSWORD }}
+          docker login --username=${{ secrets.DOCKER_USERNAME }}   --password-stdin=${{ secrets.DOCKER_PASSWORD }}
           docker compose -f docker-compose.prod.yml build
           docker push ${{ secrets.DOCKER_USERNAME }}/next-app-prod
 

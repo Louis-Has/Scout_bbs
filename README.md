@@ -69,7 +69,7 @@ docker compose -f docker-compose.prod.yml build
 docker compose -f docker-compose.prod.yml up -d
 ```
 
-Alternatively, run the production server without without multistage builds (Final image approximately 1 GB).
+Alternatively, run the production server without multistage builds (Final image approximately 1 GB).
 
 ```bash
 # Create a network, which allows containers to communicate
@@ -93,4 +93,7 @@ docker kill $(docker ps -q) && docker rm $(docker ps -a -q)
 
 # Free space
 docker system prune -af --volumes
+
+# run nginx
+docker run -d -p 80:80 --name nginx-web -v /root/nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v /root/nginx/logs:/var/log/nginx nginx
 ```

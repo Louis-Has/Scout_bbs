@@ -25,7 +25,7 @@ jobs:
 
       - name: Build the Docker image
         run: |
-          docker login -u=${{ secrets.DOCKER_USERNAME }}   -p=${{ secrets.DOCKER_PASSWORD }}
+          docker login -u=${{ secrets.DOCKER_USERNAME }} -p=${{ secrets.DOCKER_PASSWORD }}
           docker compose -f docker-compose.prod.yml build
           docker tag next-app-prod ${{ secrets.DOCKER_USERNAME }}/next-app-prod
           docker push ${{ secrets.DOCKER_USERNAME }}/next-app-prod
@@ -35,7 +35,8 @@ jobs:
         with:
           host: ${{ secrets.TENCENT_HOST }}
           username: root
-          password: ${{ secrets.TENCENT_HOST_P }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          #password: ${{ secrets.TENCENT_HOST_P }}
           script: |
             docker pull ${{ secrets.DOCKER_USERNAME }}/next-app-prod
             docker stop next-app-prod

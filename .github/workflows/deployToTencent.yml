@@ -39,6 +39,7 @@ jobs:
           #password: ${{ secrets.TENCENT_HOST_P }}
           script: |
             docker pull ${{ secrets.DOCKER_USERNAME }}/next-app-prod
+            echo "docker image pull over"
             docker stop next-app-prod
             docker rm next-app-prod
             docker run --name next-app-prod -d -p 4422:3000 ${{ secrets.DOCKER_USERNAME }}/next-app-prod

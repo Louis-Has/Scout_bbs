@@ -15,7 +15,8 @@ export default function Home() {
         <title>Welcome to YH Park</title>
         <link rel="icon" href={'/favicon/'+ faviconArr[num]} />
       </Head>
-        <p>dsfkheojw</p>
+        <p>now is 10-12</p>
+        <p>try to run actions</p>
 
         <svg className={'icon '+ cn('icon')} aria-hidden="true">
             <use xlinkHref="#icon-xichenqiA"></use>

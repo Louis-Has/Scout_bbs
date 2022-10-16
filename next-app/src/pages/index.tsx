@@ -1,27 +1,19 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import styles from '@styles/Home.module.scss'
 import classNames from "classnames/bind";
+import {useRouter} from "next/router";
 
 export default function Home() {
     const cn = classNames.bind(styles)
+    const router = useRouter()
 
-    const faviconArr = ['吸尘器.svg','收音机.svg','电脑.svg','电视机.svg','空调.svg']
-    const num = parseInt(String(Math.random() * 100))%faviconArr.length
+    return (
+        <div className={styles.container}>
+            <p>now is 10-17</p>
+            <p>try to run actions</p>
+            <div className={cn('card')} onClick={() => router.push('/knowledgeRouter')}>
+                <p>Knowledge</p>
+            </div>
 
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Welcome to YH Park</title>
-        <link rel="icon" href={'/favicon/'+ faviconArr[num]} />
-      </Head>
-        <p>now is 10-12</p>
-        <p>try to run actions</p>
-
-        <svg className={'icon '+ cn('icon')} aria-hidden="true">
-            <use xlinkHref="#icon-xichenqiA"></use>
-        </svg>
-
-    </div>
-  )
+        </div>
+    )
 }

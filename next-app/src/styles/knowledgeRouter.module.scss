@@ -1,0 +1,41 @@
+.container {
+  padding: 2rem;
+}
+
+.content {
+  .item {
+    display: inline-block;
+    border: 1px solid #787575;
+    border-radius: 4px;
+    overflow: hidden;
+
+    margin: 4px;
+
+    cursor: pointer;
+
+    img {
+      height: 180px;
+      object-fit: contain;
+
+    }
+  }
+}
+
+
+.modal {
+  position: absolute;
+  top: 0;
+  background-color: #00000073;
+  width: 100%;
+  min-height: 100%;
+
+  .content {
+    border-radius: 4px;
+    overflow: hidden;
+
+    width: 80%;
+    min-height: 120px;
+    background-color: #fff;
+    margin: auto;
+  }
+}

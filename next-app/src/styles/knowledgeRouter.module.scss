@@ -2,11 +2,11 @@
   padding: 2rem;
   width: 100vw;
 }
-
+$img-color: #787575;
 .content {
   .item {
     display: inline-block;
-    border: 1px solid #787575;
+    border: 1px solid $img-color;
     border-radius: 4px;
     overflow: hidden;
 
@@ -17,11 +17,9 @@
     img {
       height: 180px;
       object-fit: contain;
-
     }
   }
 }
-
 
 .modal {
   position: absolute;
@@ -38,5 +36,14 @@
     min-height: 120px;
     background-color: #fff;
     margin: auto;
+
+    padding: 24px;
+
+    img {
+      height: 420px;
+      border: 1px solid $img-color;
+      border-radius: 4px;
+      overflow: hidden;
+    }
   }
 }

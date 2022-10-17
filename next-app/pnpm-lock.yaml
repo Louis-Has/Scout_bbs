@@ -8,6 +8,7 @@ specifiers:
   axios: ^0.27.2
   classnames: ^2.3.2
   next: latest
+  prettier: ^2.7.1
   react: 18.1.0
   react-dom: 18.1.0
   sass: ^1.54.9
@@ -27,6 +28,7 @@ devDependencies:
   '@types/node': 17.0.42
   '@types/react': 18.0.12
   '@types/react-dom': 18.0.5
+  prettier: 2.7.1
   sass: 1.54.9
   typescript: 4.7.3
 
@@ -569,6 +571,12 @@ packages:
       picocolors: 1.0.0
       source-map-js: 1.0.2
     dev: false
+
+  /prettier/2.7.1:
+    resolution: {integrity: sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
+    dev: true
 
   /rc-align/4.0.12_ef5jwxihqo6n7gxfmzogljlgcm:
     resolution: {integrity: sha512-3DuwSJp8iC/dgHzwreOQl52soj40LchlfUHtgACOUtwGuoFIOVh6n/sCpfqCU8kO5+iz6qR0YKvjgB8iPdE3aQ==}

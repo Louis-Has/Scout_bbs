@@ -1,7 +1,9 @@
 .container {
   padding: 2rem;
   width: 100vw;
+  height: 2000px;
 }
+
 $img-color: #787575;
 .content {
   .item {
@@ -30,7 +32,7 @@ $img-color: #787575;
 
   .content {
     border-radius: 4px;
-    overflow: hidden;
+    //overflow: hidden;
 
     width: 80%;
     min-height: 120px;
@@ -39,11 +41,43 @@ $img-color: #787575;
 
     padding: 24px;
 
+    display: flex;
+
     img {
       height: 420px;
       border: 1px solid $img-color;
       border-radius: 4px;
       overflow: hidden;
+
+      margin: 0 12px;
+    }
+
+    .sideDes {
+      flex-grow: 1;
+      background-color: #f5f2e9;
+      border-radius: 4px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+
+      .sideTap {
+        padding: 8px 16px;
+        margin: 0 auto;
+        border: 1px solid #d8dbde;
+        background-color: #b3c8d9;
+        border-radius: 2px;
+
+        position: relative;
+      }
+
+      .sideTapLine {
+        position: absolute;
+        top: 50%;
+        right: 50%;
+
+        border-top: 1px solid;
+      }
     }
   }
 }

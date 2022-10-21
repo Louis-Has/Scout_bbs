@@ -10,7 +10,7 @@ export default function Home() {
     <div className={styles.container}>
       <p>now is 10-17</p>
       <p>try to run actions</p>
-      <div className={cn('card')} onClick={() => router.push('/knowledgeRouter')}>
+      <div className={cn(styles.card)} onClick={() => router.push('/knowledgeRouter')}>
         <p>Knowledge</p>
       </div>
     </div>

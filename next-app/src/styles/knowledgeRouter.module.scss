@@ -30,54 +30,75 @@ $img-color: #787575;
   width: 100%;
   min-height: 100%;
 
-  .content {
+  .modalContent {
     border-radius: 4px;
     //overflow: hidden;
 
     width: 80%;
-    min-height: 120px;
+    min-height: 800px;
     background-color: #fff;
     margin: auto;
 
-    padding: 24px;
+    //padding: 24px;
 
-    display: flex;
+    //position: relative;
 
-    img {
-      height: 420px;
-      border: 1px solid $img-color;
-      border-radius: 4px;
-      overflow: hidden;
-
-      margin: 0 12px;
+    & > * {
+      position: absolute;
+      transform: translate(-50%, -50%);
     }
 
-    .sideDes {
-      flex-grow: 1;
-      background-color: #f5f2e9;
-      border-radius: 4px;
+    .controlDiv {
+      width: 120px;
+      padding: 12px;
+      border: 1px solid #eaeaea;
+      cursor: pointer;
+      user-select: none;
 
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-
-      .sideTap {
-        padding: 8px 16px;
-        margin: 0 auto;
-        border: 1px solid #d8dbde;
-        background-color: #b3c8d9;
-        border-radius: 2px;
-
-        position: relative;
-      }
-
-      .sideTapLine {
-        position: absolute;
-        top: 50%;
-        right: 50%;
-
-        border-top: 1px solid;
+      &:hover {
+        color: #0070f3;
+        border-color: #0070f3;
       }
     }
+
+    //display: flex;
+    //
+    //img {
+    //  height: 420px;
+    //  border: 1px solid $img-color;
+    //  border-radius: 4px;
+    //  overflow: hidden;
+    //
+    //  margin: 0 12px;
+    //}
+    //
+    //.sideDes {
+    //  flex-grow: 1;
+    //  background-color: #f5f2e9;
+    //  border-radius: 4px;
+    //
+    //  display: flex;
+    //  flex-direction: column;
+    //  justify-content: space-evenly;
+    //
+    //  .sideTap {
+    //    padding: 8px 16px;
+    //    margin: 0 auto;
+    //    border: 1px solid #d8dbde;
+    //    background-color: #b3c8d9;
+    //    border-radius: 2px;
+    //
+    //    //position: relative;
+    //  }
+    //
+    //  .sideTapLine {
+    //    position: absolute;
+    //    //top: 50%;
+    //    //right: 50%;
+    //    left: 0;
+    //
+    //    border-top: 1px solid;
+    //  }
+    //}
   }
 }

@@ -100,40 +100,36 @@ const knowledgeRouter = () => {
             console.log('now is mouseup')
           }}
           onMouseMove={(event) => {
-            console.log('rewrite location')
+            // console.log('rewrite location')
             setCurrentX(event.clientX)
             setCurrentY(event.clientY)
           }}
         >
+          <div style={{ top: '80px' }}>
+            <p>{currentX}</p>
+            <p>{currentY}</p>
+          </div>
           {['ready to move1', 'ready to move2'].map((item, key) => {
-            const [move, setMove] = useState<boolean>(false)
-
             const [currentEleX, setCurrentEleX] = useState<number>(0)
             const [currentEleY, setCurrentEleY] = useState<number>(0)
-            if (activeEle === key) {
-              console.log('now is the mousedown', key)
-              // setCurrentEleX(currentEleX)
-              // setCurrentEleY(currentEleY)
-            }
-            // const storeLocation = (e: MouseEvent) => {
-            //   if (move) {
-            //     console.log('should', e)
-            //     setCurrentX(e.offsetX)
-            //     setCurrentY(e.offsetY)
-            //   }
-            // }
-            //
-            // useEffect(() => {
-            //   window.addEventListener('mousemove', storeLocation)
-            //   return () => window.removeEventListener('mousemove', storeLocation)
-            // }, [move])
 
-            useEffect(() => {})
+            useEffect(() => {
+              if (activeEle === key) {
+                setCurrentEleX(currentX)
+                setCurrentEleY(currentY)
+              }
+            }, [currentX, currentY])
+
             return (
               <div
                 className={cn(styles.controlDiv)}
-                style={{ top: currentEleY, left: currentEleX }}
-                onMouseDown={() => setActiveEle(key)}
+                style={{
+                  top: currentEleY,
+                  left: currentEleX,
+                }}
+                onMouseDown={() => {
+                  setActiveEle(key)
+                }}
                 key={key}
               >
                 {item}

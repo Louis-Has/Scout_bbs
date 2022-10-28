@@ -2,7 +2,7 @@ import styles from '@styles/knowledgeRouter.module.scss'
 import classNames from 'classnames/bind'
 import Head from 'next/head'
 import { Tabs } from 'antd'
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useEffect, useRef, useState } from 'react'
 import { getPublicStaticsList, modalData } from '@utils/api'
 
 const knowledgeRouter = () => {
@@ -12,13 +12,36 @@ const knowledgeRouter = () => {
   const [queryData, setQueryData] = useState<modalData[]>([])
 
   // modal
-  const [showModal, setShowModal] = useState<boolean>(false)
+  const [modalShow, setModalShow] = useState<boolean>(false)
   const [modalKey, setModalKey] = useState<number>()
+  const modalContent = useRef<HTMLDivElement>()
+
+  // modal Img
+  const modalImg = useRef<HTMLImageElement>()
 
   // current active div
   const [activeEle, setActiveEle] = useState<number>(undefined)
   const [currentX, setCurrentX] = useState<number>(0)
   const [currentY, setCurrentY] = useState<number>(0)
+  // contentTag
+  const [modalTag, setModalTag] = useState([
+    { context: 'ready to move1', left: 30, top: 20, pointLeft: 80, pointTop: 40 },
+    { context: 'ready to move2', left: 80, top: 40, pointLeft: 40, pointTop: 60 },
+  ])
+
+  useEffect(() => {
+    setModalTag(
+      modalTag.map((itemSet, keySet) =>
+        keySet === activeEle
+          ? {
+              ...itemSet,
+              left: (currentX / modalContent.current?.offsetWidth) * 100,
+              top: (currentY / modalContent.current?.offsetHeight) * 100,
+            }
+          : itemSet
+      )
+    )
+  }, [currentX, currentY])
 
   const TabsChildren: ReactNode = (
     <>
@@ -28,7 +51,7 @@ const knowledgeRouter = () => {
             <div
               className={cn('item')}
               onClick={() => {
-                setShowModal(true)
+                setModalShow(true)
                 setModalKey(key)
               }}
               key={key}
@@ -38,7 +61,7 @@ const knowledgeRouter = () => {
           ))}
         </div>
       ) : (
-        <p onClick={() => setShowModal(true)}>请先点击任意tab</p>
+        <p onClick={() => setModalShow(true)}>请先点击任意tab</p>
       )}
     </>
   )
@@ -49,10 +72,7 @@ const knowledgeRouter = () => {
         <title>Knowledge Card</title>
       </Head>
 
-      <div
-        className={cn('container')}
-        style={showModal ? { position: 'fixed', top: -window.scrollY } : {}}
-      >
+      <div className={cn(styles.container)} style={modalShow ? { position: 'fixed', top: -window.scrollY } : {}}>
         <p>展示几个card效果</p>
         <Tabs
           activeKey={tabsActiveKey}
@@ -87,99 +107,126 @@ const knowledgeRouter = () => {
         ></Tabs>
       </div>
 
-      <div
-        className={cn(styles.modal)}
-        style={{ display: showModal ? 'flex' : 'none' }}
-        onClick={() => setShowModal(false)}
-      >
+      {!modalShow || (
         <div
-          className={cn(styles.modalContent)}
-          onClick={(e) => e.stopPropagation()}
-          onMouseUp={() => {
-            setActiveEle(undefined)
-            console.log('now is mouseup')
-          }}
-          onMouseMove={(event) => {
-            // console.log('rewrite location')
-            setCurrentX(event.clientX)
-            setCurrentY(event.clientY)
-          }}
+          className={cn(styles.modal)}
+          style={{ display: modalShow ? 'flex' : 'none' }}
+          onClick={() => setModalShow(false)}
         >
-          <div style={{ top: '80px' }}>
-            <p>{currentX}</p>
-            <p>{currentY}</p>
+          <div
+            className={cn(styles.modalContent)}
+            onClick={(e) => e.stopPropagation()}
+            onMouseUp={() => {
+              setActiveEle(undefined)
+              // console.log('now is mouseup')
+            }}
+            onMouseMove={(event) => {
+              // console.log('rewrite location', event)
+              setCurrentX(event.clientX - modalContent.current.offsetLeft)
+              setCurrentY(event.clientY - modalContent.current.offsetTop)
+            }}
+            ref={modalContent}
+          >
+            <img className={cn(styles.controlImg)} src={queryData[modalKey]?.tmpUrl} alt='tmpUrl' ref={modalImg} />
+
+            {modalTag.map((item, key) => {
+              // console.log(modalImg)
+              const currentTagX = (item.left * modalContent.current?.offsetWidth) / 100 || 0
+              const currentTagY = (item.top * modalContent.current?.offsetHeight) / 100 || 0
+
+              const currentImgX =
+                modalImg.current?.offsetLeft + (modalImg.current?.offsetWidth * item.pointLeft) / 100 || 0
+              const currentImgY =
+                modalImg.current?.offsetTop + (modalImg.current?.offsetHeight * item.pointTop) / 100 || 0
+
+              const tagLineStrokeWidth = activeEle === key ? 4 : 2
+
+              console.log(currentTagX, currentTagY, modalContent)
+
+              return (
+                <div className={cn(styles.controlContent)} key={key}>
+                  <div
+                    className={cn(styles.controlDiv)}
+                    style={{
+                      left: currentTagX,
+                      top: currentTagY,
+                    }}
+                    onMouseDown={() => {
+                      setActiveEle(key)
+                    }}
+                  >
+                    {item.context}
+                  </div>
+                  <svg
+                    width={modalContent.current?.offsetWidth}
+                    height={modalContent.current?.offsetHeight}
+                    style={{ top: 0 }}
+                  >
+                    <line
+                      x1={currentTagX}
+                      y1={currentTagY}
+                      x2={currentImgX}
+                      y2={currentTagY}
+                      stroke='black'
+                      strokeWidth={tagLineStrokeWidth}
+                    />
+                    <line
+                      x1={currentImgX}
+                      y1={currentTagY}
+                      x2={currentImgX}
+                      y2={currentImgY}
+                      stroke='black'
+                      strokeWidth={tagLineStrokeWidth}
+                    />
+                  </svg>
+                </div>
+              )
+            })}
+            {/*<div*/}
+            {/*  draggable*/}
+            {/*  className={cn(styles.controlDiv)}*/}
+            {/*  style={{ top: currentY, left: currentX }}*/}
+            {/*  onDragEnd={(event) => {*/}
+            {/*    setCurrentX(event.clientX)*/}
+            {/*    setCurrentY(event.clientY)*/}
+            {/*  }}*/}
+            {/*>*/}
+            {/*  ready to move*/}
+            {/*</div>*/}
+            {/*<div className={cn(styles.sideDes)}>*/}
+            {/*  {['弹窗必不可少', '滑到内容的尽头时，再继续', '演示：阻止链接跳转的默认行为'].map(*/}
+            {/*    (item, key) => {*/}
+            {/*      const mainDiv = useRef<HTMLDivElement>()*/}
+            {/*      const [distance, setDistance] = useState<number>()*/}
+            {/*      // let distance*/}
+
+            {/*      useEffect(() => {*/}
+            {/*        setDistance(mainDiv.current.offsetLeft)*/}
+            {/*        // distance = mainDiv.current.offsetLeft*/}
+            {/*        console.log('now ready to write', mainDiv.current.offsetLeft)*/}
+            {/*      }, [showModal])*/}
+            {/*      return (*/}
+            {/*        <div*/}
+            {/*          key={key}*/}
+            {/*          className={cn(styles.sideTap)}*/}
+            {/*          ref={mainDiv}*/}
+            {/*          onClick={() => console.log(mainDiv.current.offsetLeft, distance)}*/}
+            {/*        >*/}
+            {/*          {item}*/}
+            {/*          <div*/}
+            {/*            style={{ height: '1px', width: `${distance}px` }}*/}
+            {/*            className={cn(styles.sideTapLine)}*/}
+            {/*          />*/}
+            {/*        </div>*/}
+            {/*      )*/}
+            {/*    }*/}
+            {/*  )}*/}
+            {/*</div>*/}
+            {/*<img src={queryData[modalKey]?.tmpUrl} alt='tmpImg' />*/}
+            {/*<div className={cn(styles.sideDes)}></div>*/}
           </div>
-          {['ready to move1', 'ready to move2'].map((item, key) => {
-            const [currentEleX, setCurrentEleX] = useState<number>(0)
-            const [currentEleY, setCurrentEleY] = useState<number>(0)
-
-            useEffect(() => {
-              if (activeEle === key) {
-                setCurrentEleX(currentX)
-                setCurrentEleY(currentY)
-              }
-            }, [currentX, currentY])
-
-            return (
-              <div
-                className={cn(styles.controlDiv)}
-                style={{
-                  top: currentEleY,
-                  left: currentEleX,
-                }}
-                onMouseDown={() => {
-                  setActiveEle(key)
-                }}
-                key={key}
-              >
-                {item}
-              </div>
-            )
-          })}
-          {/*<div*/}
-          {/*  draggable*/}
-          {/*  className={cn(styles.controlDiv)}*/}
-          {/*  style={{ top: currentY, left: currentX }}*/}
-          {/*  onDragEnd={(event) => {*/}
-          {/*    setCurrentX(event.clientX)*/}
-          {/*    setCurrentY(event.clientY)*/}
-          {/*  }}*/}
-          {/*>*/}
-          {/*  ready to move*/}
-          {/*</div>*/}
-          {/*<div className={cn(styles.sideDes)}>*/}
-          {/*  {['弹窗必不可少', '滑到内容的尽头时，再继续', '演示：阻止链接跳转的默认行为'].map(*/}
-          {/*    (item, key) => {*/}
-          {/*      const mainDiv = useRef<HTMLDivElement>()*/}
-          {/*      const [distance, setDistance] = useState<number>()*/}
-          {/*      // let distance*/}
-
-          {/*      useEffect(() => {*/}
-          {/*        setDistance(mainDiv.current.offsetLeft)*/}
-          {/*        // distance = mainDiv.current.offsetLeft*/}
-          {/*        console.log('now ready to write', mainDiv.current.offsetLeft)*/}
-          {/*      }, [showModal])*/}
-          {/*      return (*/}
-          {/*        <div*/}
-          {/*          key={key}*/}
-          {/*          className={cn(styles.sideTap)}*/}
-          {/*          ref={mainDiv}*/}
-          {/*          onClick={() => console.log(mainDiv.current.offsetLeft, distance)}*/}
-          {/*        >*/}
-          {/*          {item}*/}
-          {/*          <div*/}
-          {/*            style={{ height: '1px', width: `${distance}px` }}*/}
-          {/*            className={cn(styles.sideTapLine)}*/}
-          {/*          />*/}
-          {/*        </div>*/}
-          {/*      )*/}
-          {/*    }*/}
-          {/*  )}*/}
-          {/*</div>*/}
-          {/*<img src={queryData[modalKey]?.tmpUrl} alt='tmpImg' />*/}
-          {/*<div className={cn(styles.sideDes)}></div>*/}
         </div>
-      </div>
+      )}
     </>
   )
 }

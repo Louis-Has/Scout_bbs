@@ -5,7 +5,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-  Helvetica Neue, sans-serif;
+    Helvetica Neue, sans-serif;
 }
 
 a {
@@ -17,9 +17,8 @@ a {
   box-sizing: border-box;
 }
 
-/*  change Antd primary color */
-.ant-btn-primary {
-  background-color: blue;
+p {
+  margin: 0;
 }
 
 .icon {
@@ -28,4 +27,9 @@ a {
   vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;
+}
+
+/*  change Antd primary color */
+.ant-btn-primary {
+  background-color: blue;
 }

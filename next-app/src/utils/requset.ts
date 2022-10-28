@@ -1,7 +1,7 @@
 import { message } from 'antd';
 import axios, { AxiosPromise, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-const NEXT_PUBLIC_API_URL ='http://back.1-mu.com/back';
+const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_DEVELOPMENT_ENV_VARIABLE
 
 const instance = axios.create({
   baseURL: NEXT_PUBLIC_API_URL,
@@ -68,7 +68,6 @@ instance.interceptors.response.use(
     }
 );
 
-// @ts-ignore
 export const get: (url: string, params?: {}) => Promise<any> = (url, params = {}) => {
   const mes = localStorage.getItem('user');
 
@@ -84,7 +83,6 @@ export const get: (url: string, params?: {}) => Promise<any> = (url, params = {}
   });
 };
 
-// @ts-ignore
 export const post: (url: string, data: any, config: AxiosRequestConfig) => Promise<any> = (url, data = {}, config = {}) => {
   const mes = localStorage.getItem('user');
 

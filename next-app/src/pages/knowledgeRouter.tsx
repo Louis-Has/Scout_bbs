@@ -61,7 +61,7 @@ const knowledgeRouter = () => {
           ))}
         </div>
       ) : (
-        <p onClick={() => setModalShow(true)}>请先点击任意tab</p>
+        <p>请先点击任意tab</p>
       )}
     </>
   )

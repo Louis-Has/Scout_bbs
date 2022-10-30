@@ -13,6 +13,9 @@ export default function Home() {
       <div className={cn(styles.card)} onClick={() => router.push('/knowledgeRouter')}>
         <p>Knowledge</p>
       </div>
+      <div className={cn(styles.card)} onClick={() => router.push('/GameOrder')}>
+        <p>GameOrder</p>
+      </div>
     </div>
   )
 }

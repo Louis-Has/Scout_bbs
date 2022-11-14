@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const GameOrder: React.FC = () => {
   return <div>ssd</div>

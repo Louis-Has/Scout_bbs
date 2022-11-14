@@ -1,17 +1,7 @@
-import React from 'react'
-import styles from '@styles/GameOrder.module.scss'
-import classNames from 'classnames/bind'
-import Nav from '@components/Nav'
+import React, { useEffect } from 'react'
 
 const GameOrder: React.FC = () => {
-  const cn = classNames.bind(styles)
-
-  return (
-    <>
-      <Nav />
-      <div></div>
-    </>
-  )
+  return <div>ssd</div>
 }
 
 export default GameOrder

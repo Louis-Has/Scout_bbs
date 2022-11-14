@@ -107,126 +107,78 @@ const knowledgeRouter = () => {
         ></Tabs>
       </div>
 
-      {!modalShow || (
+      <div className={cn(styles.modal, { [styles.modalActive]: modalShow })} onClick={() => setModalShow(false)}>
         <div
-          className={cn(styles.modal)}
-          style={{ display: modalShow ? 'flex' : 'none' }}
-          onClick={() => setModalShow(false)}
+          className={cn(styles.modalContent)}
+          onClick={(e) => e.stopPropagation()}
+          onMouseUp={() => {
+            setActiveEle(undefined)
+            // console.log('now is mouseup')
+          }}
+          onMouseMove={(event) => {
+            // console.log('rewrite location', event)
+            setCurrentX(event.clientX - modalContent.current.offsetLeft)
+            setCurrentY(event.clientY - modalContent.current.offsetTop)
+          }}
+          ref={modalContent}
         >
-          <div
-            className={cn(styles.modalContent)}
-            onClick={(e) => e.stopPropagation()}
-            onMouseUp={() => {
-              setActiveEle(undefined)
-              // console.log('now is mouseup')
-            }}
-            onMouseMove={(event) => {
-              // console.log('rewrite location', event)
-              setCurrentX(event.clientX - modalContent.current.offsetLeft)
-              setCurrentY(event.clientY - modalContent.current.offsetTop)
-            }}
-            ref={modalContent}
-          >
-            <img className={cn(styles.controlImg)} src={queryData[modalKey]?.tmpUrl} alt='tmpUrl' ref={modalImg} />
+          <img className={cn(styles.controlImg)} src={queryData[modalKey]?.tmpUrl} alt='tmpUrl' ref={modalImg} />
 
-            {modalTag.map((item, key) => {
-              // console.log(modalImg)
-              const currentTagX = (item.left * modalContent.current?.offsetWidth) / 100 || 0
-              const currentTagY = (item.top * modalContent.current?.offsetHeight) / 100 || 0
+          {modalTag.map((item, key) => {
+            // console.log(modalImg)
+            const currentTagX = (item.left * modalContent.current?.offsetWidth) / 100 || 0
+            const currentTagY = (item.top * modalContent.current?.offsetHeight) / 100 || 0
 
-              const currentImgX =
-                modalImg.current?.offsetLeft + (modalImg.current?.offsetWidth * item.pointLeft) / 100 || 0
-              const currentImgY =
-                modalImg.current?.offsetTop + (modalImg.current?.offsetHeight * item.pointTop) / 100 || 0
+            const currentImgX =
+              modalImg.current?.offsetLeft + (modalImg.current?.offsetWidth * item.pointLeft) / 100 || 0
+            const currentImgY =
+              modalImg.current?.offsetTop + (modalImg.current?.offsetHeight * item.pointTop) / 100 || 0
 
-              const tagLineStrokeWidth = activeEle === key ? 4 : 2
+            const tagLineStrokeWidth = activeEle === key ? 4 : 2
 
-              console.log(currentTagX, currentTagY, modalContent)
+            console.log(currentTagX, currentTagY, modalContent)
 
-              return (
-                <div className={cn(styles.controlContent)} key={key}>
-                  <div
-                    className={cn(styles.controlDiv)}
-                    style={{
-                      left: currentTagX,
-                      top: currentTagY,
-                    }}
-                    onMouseDown={() => {
-                      setActiveEle(key)
-                    }}
-                  >
-                    {item.context}
-                  </div>
-                  <svg
-                    width={modalContent.current?.offsetWidth}
-                    height={modalContent.current?.offsetHeight}
-                    style={{ top: 0 }}
-                  >
-                    <line
-                      x1={currentTagX}
-                      y1={currentTagY}
-                      x2={currentImgX}
-                      y2={currentTagY}
-                      stroke='black'
-                      strokeWidth={tagLineStrokeWidth}
-                    />
-                    <line
-                      x1={currentImgX}
-                      y1={currentTagY}
-                      x2={currentImgX}
-                      y2={currentImgY}
-                      stroke='black'
-                      strokeWidth={tagLineStrokeWidth}
-                    />
-                  </svg>
+            return (
+              <div className={cn(styles.controlContent)} key={key}>
+                <div
+                  className={cn(styles.controlDiv)}
+                  style={{
+                    left: currentTagX,
+                    top: currentTagY,
+                  }}
+                  onMouseDown={() => {
+                    setActiveEle(key)
+                  }}
+                >
+                  {item.context}
                 </div>
-              )
-            })}
-            {/*<div*/}
-            {/*  draggable*/}
-            {/*  className={cn(styles.controlDiv)}*/}
-            {/*  style={{ top: currentY, left: currentX }}*/}
-            {/*  onDragEnd={(event) => {*/}
-            {/*    setCurrentX(event.clientX)*/}
-            {/*    setCurrentY(event.clientY)*/}
-            {/*  }}*/}
-            {/*>*/}
-            {/*  ready to move*/}
-            {/*</div>*/}
-            {/*<div className={cn(styles.sideDes)}>*/}
-            {/*  {['弹窗必不可少', '滑到内容的尽头时，再继续', '演示：阻止链接跳转的默认行为'].map(*/}
-            {/*    (item, key) => {*/}
-            {/*      const mainDiv = useRef<HTMLDivElement>()*/}
-            {/*      const [distance, setDistance] = useState<number>()*/}
-            {/*      // let distance*/}
-
-            {/*      useEffect(() => {*/}
-            {/*        setDistance(mainDiv.current.offsetLeft)*/}
-            {/*        // distance = mainDiv.current.offsetLeft*/}
-            {/*        console.log('now ready to write', mainDiv.current.offsetLeft)*/}
-            {/*      }, [showModal])*/}
-            {/*      return (*/}
-            {/*        <div*/}
-            {/*          key={key}*/}
-            {/*          className={cn(styles.sideTap)}*/}
-            {/*          ref={mainDiv}*/}
-            {/*          onClick={() => console.log(mainDiv.current.offsetLeft, distance)}*/}
-            {/*        >*/}
-            {/*          {item}*/}
-            {/*          <div*/}
-            {/*            style={{ height: '1px', width: `${distance}px` }}*/}
-            {/*            className={cn(styles.sideTapLine)}*/}
-            {/*          />*/}
-            {/*        </div>*/}
-            {/*      )*/}
-            {/*    }*/}
-            {/*  )}*/}
-            {/*</div>*/}
-            {/*<img src={queryData[modalKey]?.tmpUrl} alt='tmpImg' />*/}
-            {/*<div className={cn(styles.sideDes)}></div>*/}
-          </div>
+                <svg
+                  width={modalContent.current?.offsetWidth}
+                  height={modalContent.current?.offsetHeight}
+                  style={{ top: 0 }}
+                >
+                  <line
+                    x1={currentTagX}
+                    y1={currentTagY}
+                    x2={currentImgX}
+                    y2={currentTagY}
+                    stroke='black'
+                    strokeWidth={tagLineStrokeWidth}
+                  />
+                  <line
+                    x1={currentImgX}
+                    y1={currentTagY}
+                    x2={currentImgX}
+                    y2={currentImgY}
+                    stroke='black'
+                    strokeWidth={tagLineStrokeWidth}
+                  />
+                </svg>
+              </div>
+            )
+          })}
         </div>
-      )}
+      </div>
     </>
   )
 }

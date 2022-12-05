@@ -43,6 +43,21 @@ const knowledgeRouter = () => {
     )
   }, [currentX, currentY])
 
+  const [modalScrollY, setModalScrollY] = useState<number>(0)
+
+  const recodeScrollY = () => {
+    if (!modalShow) setModalScrollY(window.scrollY)
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', recodeScrollY)
+    return () => window.removeEventListener('scroll', recodeScrollY)
+  })
+
+  useEffect(() => {
+    document.scrollingElement.scrollTop = modalScrollY
+  }, [modalShow])
+
   const TabsChildren: ReactNode = (
     <>
       {queryData.length ? (
@@ -72,7 +87,7 @@ const knowledgeRouter = () => {
         <title>Knowledge Card</title>
       </Head>
 
-      <div className={cn(styles.container)} style={modalShow ? { position: 'fixed', top: -window.scrollY } : {}}>
+      <div className={cn(styles.container)} style={modalShow ? { position: 'fixed', top: -modalScrollY } : {}}>
         <p>展示几个card效果</p>
         <Tabs
           activeKey={tabsActiveKey}
@@ -107,7 +122,12 @@ const knowledgeRouter = () => {
         ></Tabs>
       </div>
 
-      <div className={cn(styles.modal, { [styles.modalActive]: modalShow })} onClick={() => setModalShow(false)}>
+      <div
+        className={cn(styles.modal, { [styles.modalActive]: modalShow })}
+        onClick={() => {
+          setModalShow(false)
+        }}
+      >
         <div
           className={cn(styles.modalContent)}
           onClick={(e) => e.stopPropagation()}
@@ -136,7 +156,7 @@ const knowledgeRouter = () => {
 
             const tagLineStrokeWidth = activeEle === key ? 4 : 2
 
-            console.log(currentTagX, currentTagY, modalContent)
+            // console.log(currentTagX, currentTagY, modalContent)
 
             return (
               <div className={cn(styles.controlContent)} key={key}>

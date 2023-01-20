@@ -1,5 +1,3 @@
-@import '~antd/dist/antd.css';
-
 html,
 body {
   padding: 0;
@@ -27,9 +25,4 @@ p {
   vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;
-}
-
-/*  change Antd primary color */
-.ant-btn-primary {
-  background-color: blue;
 }

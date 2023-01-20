@@ -1,0 +1,20 @@
+.controlPanel {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  color: #eeeeee;
+
+  width: 260px;
+
+  .folder {
+    display: flex;
+    //justify-content: center;
+    align-items: center;
+
+    height: 28px;
+
+    background: #1a1a1a;
+    border-bottom: 1px solid #2c2c2c;
+  }
+}

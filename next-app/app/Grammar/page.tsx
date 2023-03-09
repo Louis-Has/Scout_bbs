@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import Nav from 'components/Nav/Nav'
 import FixedTip from 'components/PageComponent/FixedTip'

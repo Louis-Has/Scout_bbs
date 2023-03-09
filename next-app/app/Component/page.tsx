@@ -75,7 +75,7 @@ const HomePage: React.FC = () => {
             <div
               className={'w-full bg-fillLight h-[200px] flex cursor-pointer'}
               key={key}
-              onClick={() => route.push('/component/' + item.pathname)}
+              onClick={() => route.push('/Component/' + item.pathname)}
             >
               <div className={'w-[400px] h-full overflow-hidden group'}>
                 <img

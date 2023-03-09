@@ -15,9 +15,9 @@ const Nav: React.FC<Props> = (props) => {
   const [currentTab, setCurrentTab] = useState<number>()
   const navSource = [
     { title: '首页介绍', pathname: '/' },
-    { title: '组件详解', pathname: '/component' },
-    { title: '语法总结', pathname: '/grammar' },
-    { title: '闲暇探索', pathname: '/leisure' },
+    { title: '组件详解', pathname: '/Component' },
+    { title: '语法总结', pathname: '/Grammar' },
+    { title: '闲暇探索', pathname: '/Leisure' },
   ]
 
   useEffect(() => {

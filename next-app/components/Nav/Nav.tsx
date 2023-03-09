@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation'
 
 interface Props {
   sticky?: boolean
-  turnBlack?: boolean
+  turnTransparent?: boolean
 }
 
 const Nav: React.FC<Props> = (props) => {
@@ -30,13 +30,13 @@ const Nav: React.FC<Props> = (props) => {
         className={'w-full h-20 top-0 flexCenter px-20 z-10'}
         style={{
           ...(props.sticky ? { position: 'sticky' } : { position: 'fixed' }),
-          ...(props.turnBlack
-            ? {
+          ...(props.turnTransparent
+            ? { color: '#ffffff' }
+            : {
                 boxShadow: '0px 2px 19px rgba(53, 58, 73, 0.06)',
                 background: '#ffffff',
                 color: '#353B45',
-              }
-            : { color: '#ffffff' }),
+              }),
         }}
       >
         <p className={'text-[32px]'}>YH Park</p>
@@ -47,7 +47,7 @@ const Nav: React.FC<Props> = (props) => {
           <div className={'flex space-x-[60px]'}>
             {navSource.map((item, key) => (
               <p
-                className={'border-mainGreen leading-[60px] cursor-pointer transition-all'}
+                className={'border-mainGreen leading-[60px] cursor-pointer transition-all hover:border-b-2'}
                 style={currentTab === key ? { borderBottomWidth: '2px' } : {}}
                 key={key}
                 onClick={() => {

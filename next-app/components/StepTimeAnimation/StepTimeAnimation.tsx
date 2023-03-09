@@ -141,7 +141,7 @@ const StepTimeAnimation: React.FC = () => {
   return (
     <div className={'h-[1000px] text-textDeep pt-[100px] flex flex-col items-center'}>
       <p className={'text-[20px]'}>我们的成长</p>
-      <p className={'text-[32px] font-bold mt-5'}>一目可视大事记</p>
+      <p className={'text-[32px] font-bold mt-5'}>大事记</p>
 
       <div className={'flex items-center mt-[120px]'}>
         <div

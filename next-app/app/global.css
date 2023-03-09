@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .absoluteCenter {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+}
+
+@layer base {
+  .icon {
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+  }
+
+  input:focus-visible {
+    outline: none;
+  }
+
+  textarea:focus-visible {
+    outline: none;
+  }
+}

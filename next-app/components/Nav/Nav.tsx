@@ -15,13 +15,13 @@ const Nav: React.FC<Props> = (props) => {
   const [currentTab, setCurrentTab] = useState<number>()
   const navSource = [
     { title: '首页介绍', pathname: '/' },
-    { title: '组件详解', pathname: '/Component' },
-    { title: '语法总结', pathname: '/Grammar' },
-    { title: '闲暇探索', pathname: '/Leisure' },
+    { title: '组件详解', pathname: '/component' },
+    { title: '语法总结', pathname: '/grammar' },
+    { title: '闲暇探索', pathname: '/leisure' },
   ]
 
   useEffect(() => {
-    setCurrentTab(navSource.findIndex((item) => item.pathname !== '/' && pathname.includes(item.pathname)))
+    setCurrentTab(navSource.findIndex((item) => item.pathname.includes(pathname)))
   }, [pathname])
 
   return (
@@ -34,7 +34,8 @@ const Nav: React.FC<Props> = (props) => {
             ? { color: '#ffffff' }
             : {
                 boxShadow: '0px 2px 19px rgba(53, 58, 73, 0.06)',
-                background: '#ffffff',
+                background: '#ffffff90',
+                backdropFilter: 'blur(6px)',
                 color: '#353B45',
               }),
         }}

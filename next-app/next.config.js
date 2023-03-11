@@ -1,16 +1,8 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
+  output: 'standalone',
   experimental: {
     appDir: true,
-  },
-
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'immed-company.oss-cn-hangzhou.aliyuncs.com',
-      },
-    ],
   },
 }

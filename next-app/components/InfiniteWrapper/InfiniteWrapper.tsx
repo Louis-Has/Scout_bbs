@@ -28,7 +28,9 @@ const InfiniteWrapper: React.FC<Props> = (props) => {
   }, [shouldMove, cooperationLeft])
 
   useEffect(() => {
-    if ((props.parentWidth || 1080) > Number(parentDiv.current?.clientWidth) + cooperationLeft) {
+    // console.log('record', props.parentWidth, Number(parentDiv.current?.clientWidth))
+
+    if ((props.parentWidth || 1920) > Number(parentDiv.current?.clientWidth) + cooperationLeft) {
       // if (!props.directionRight) {
       // console.log('ready to add source', cooperationDisplayList.length)
       // }
@@ -49,7 +51,7 @@ const InfiniteWrapper: React.FC<Props> = (props) => {
     >
       {cooperationDisplayList.map((item, key) => (
         <div
-          className={'p-2.5 bg-white w-max h-[100px]'}
+          className={'p-2.5 bg-white w-max h-[100px] flexCenter'}
           key={key}
           style={{ boxShadow: '0px 2px 19px rgba(53, 58, 73, 0.06)' }}
           onMouseOver={() => {
@@ -59,8 +61,7 @@ const InfiniteWrapper: React.FC<Props> = (props) => {
             setShouldMove(true)
           }}
         >
-          {/*<img src={item.text} alt='coop' className={'h-full object-contain'} />*/}
-          <p>{item.text}</p>
+          <p className={'min-w-[120px]'}>{item.text}</p>
         </div>
       ))}
     </div>

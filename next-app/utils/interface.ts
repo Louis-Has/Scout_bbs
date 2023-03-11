@@ -54,3 +54,10 @@ export type questionnaireType = {
   budget: string
   describe: string
 }
+
+export type articleCardType = {
+  cover: string
+  title: string
+  subTitle: string
+  pathname: string
+}

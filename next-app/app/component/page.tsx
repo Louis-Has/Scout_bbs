@@ -6,29 +6,42 @@ import Nav from 'components/Nav/Nav'
 import Footer from 'components/PageComponent/Footer'
 import FixedTip from 'components/PageComponent/FixedTip'
 import TopContent from 'components/PageComponent/TopContent'
+import ArticleCardContent from 'components/PageComponent/ArticleCardContent'
+import { articleCardType } from 'utils/interface'
 
 const HomePage: React.FC = () => {
   const route = useRouter()
 
-  const tabSource = [
-    { cover: '/banner.png', title: 'InfiniteCarousel', subTitle: '无限横向不定宽滚动', pathname: 'InfiniteCarousel' },
+  const tabSource: articleCardType[] = [
     {
-      cover: '/banner.png',
+      cover: '/component/InfiniteCarousel.png',
+      title: 'InfiniteCarousel',
+      subTitle: '无限横向不定宽滚动',
+      pathname: 'InfiniteCarousel',
+    },
+    {
+      cover: '/component/LayerHorizontalMask.png',
       title: 'LayerHorizontalMask',
       subTitle: '随滚动变化的组合动画',
       pathname: 'LayerHorizontalMask',
     },
     {
-      cover: '/banner.png',
+      cover: '/component/StepTimeAnimation.png',
       title: 'StepTimeAnimation',
       subTitle: '分阶段自动可控时间轴展示',
       pathname: 'StepTimeAnimation',
     },
     {
-      cover: '/banner.png',
-      title: 'SwitchScrollModal',
-      subTitle: '可上下滚动式 Modal',
-      pathname: 'SwitchScrollModal',
+      cover: '/component/ControlledVirtualizedWaterfall.png',
+      title: 'ControlledVirtualizedWaterfall',
+      subTitle: '自适应、虚拟化瀑布流',
+      pathname: 'ControlledVirtualizedWaterfall',
+    },
+    {
+      cover: '/component/LikeAntd.png',
+      title: 'like Antd Component',
+      subTitle: '类似 Antd 组件',
+      pathname: 'LikeAntd',
     },
   ]
 
@@ -63,6 +76,7 @@ const HomePage: React.FC = () => {
     { text: 'mysql' },
     { text: 'MongeDB' },
   ]
+
   return (
     <>
       <Nav />
@@ -70,34 +84,15 @@ const HomePage: React.FC = () => {
       <TopContent />
 
       <div className={'flex justify-center py-20'}>
-        <div className={'w-[800px] flex flex-col space-y-5'}>
-          {tabSource.map((item, key) => (
-            <div
-              className={'w-full bg-fillLight h-[200px] flex cursor-pointer'}
-              key={key}
-              onClick={() => route.push('/Component/' + item.pathname)}
-            >
-              <div className={'w-[400px] h-full overflow-hidden group'}>
-                <img
-                  src={item.cover}
-                  alt={'cover'}
-                  className={'w-[400px] h-full object-cover transition-all group-hover:scale-110'}
-                />
-              </div>
-
-              <div className={'p-10 text-textDeep flex flex-col justify-between'}>
-                <p className={'text-[28px] font-bold'}>{item.title}</p>
-                <p className={''}>{item.subTitle}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ArticleCardContent cardSource={tabSource} onClick={(text: string) => route.push('/component/' + text)} />
 
         <div className={'w-[320px] bg-fillLight ml-10 p-5'}>
           <p className={'font-bold'}>FEATURED TAGS</p>
           <div className={'flex flex-wrap'}>
-            {tagSource.map((item) => (
-              <span className={'border rounded-full px-4 py-2 mx-1 my-2 text-[12px]'}>{item.text}</span>
+            {tagSource.map((item, key) => (
+              <span className={'border rounded-full px-4 py-2 mx-1 my-2 text-[12px]'} key={key}>
+                {item.text}
+              </span>
             ))}
           </div>
         </div>

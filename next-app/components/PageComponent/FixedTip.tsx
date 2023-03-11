@@ -32,7 +32,9 @@ const FixedTip: React.FC = () => {
         style={{ boxShadow: '0px 4px 10px rgba(51, 51, 51, 0.1)' }}
         onClick={() => {
           if (!document.scrollingElement) return
-          document.scrollingElement.scrollTop = 0
+          window.scrollTo({
+            top: 0,
+          })
         }}
       >
         <svg className={'icon w-5 h-5'} aria-hidden='true'>

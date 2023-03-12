@@ -35,7 +35,7 @@ const HomePage: React.FC = () => {
       cover: '/component/ControlledVirtualizedWaterfall.png',
       title: 'ControlledVirtualizedWaterfall',
       subTitle: '自适应、虚拟化瀑布流',
-      pathname: 'ControlledVirtualizedWaterfall',
+      pathname: 'Waterfall',
     },
     {
       cover: '/component/LikeAntd.png',

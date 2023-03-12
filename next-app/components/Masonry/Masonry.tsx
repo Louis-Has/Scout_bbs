@@ -10,7 +10,7 @@ interface Props {
   bodyStyle?: CSSProperties
 }
 
-const Masonry: React.FC<Props> = ({ queryData, collectFun, margin = 20, width = 348, bodyStyle }) => {
+const Masonry: React.FC<Props> = ({ queryData, collectFun, margin = 20, width = 240, bodyStyle }) => {
   const [reallyWidth, setReallyWidth] = useState<number>(0) // the real width of content images
   const [imgPosition, setImgPosition] = useState<{ left: number; top: number }[]>([]) // the position of content images
   const [finalHeight, setFinalHeight] = useState<number>(0)
@@ -25,7 +25,7 @@ const Masonry: React.FC<Props> = ({ queryData, collectFun, margin = 20, width = 
 
   useEffect(() => {
     resizePosition()
-  }, [])
+  }, [width])
 
   const resizePosition = () => {
     const rootContainerWidth = document.getElementById(rootName)?.clientWidth // the masonry width
@@ -64,12 +64,12 @@ const Masonry: React.FC<Props> = ({ queryData, collectFun, margin = 20, width = 
 
   return (
     <div className={'relative'} id={rootName} style={{ ...bodyStyle, ...{ height: finalHeight || 0 } }}>
-      {/*<button onClick={resizePosition} style={{ position: 'absolute', top: '-40px' }}>*/}
-      {/*  check me*/}
-      {/*</button>*/}
-      {/*<button onClick={() => setImgPosition([])} style={{ position: 'absolute', top: '-80px' }}>*/}
-      {/*  drop data*/}
-      {/*</button>*/}
+      <button onClick={resizePosition} style={{ position: 'absolute', top: '-40px' }}>
+        click Paint
+      </button>
+      <button onClick={() => setImgPosition([])} style={{ position: 'absolute', top: '-80px' }}>
+        drop position
+      </button>
 
       {queryData.map((item, key) => {
         return (

@@ -10,73 +10,57 @@ const StepTimeAnimation: React.FC = () => {
 
   const eventSource = [
     {
-      year: 2016,
+      year: '情感与动机',
       content: {
-        title: '一目可视品牌成立',
-        date: '2016.10',
-        desc: '创立国内首个医学可视化品牌「一目可视」，专为客户提供各类顶级医学可视化定制服务。',
-        coverImg: '/about/2016pic.png',
-        backImg: '/about/2016.png',
+        title: '「受力分析」',
+        date: '2018.02',
+        desc: '如果我们把「学习动机的存在与否」归因到努力和认真上的话，这个事情一般就会变得无解。我会更加倾向于归到另外一个归因上：勇气。',
+        coverImg: '/component/238bb7784581276b21a3846775edc024.png',
       },
     },
     {
-      year: 2017,
+      year: '社会支持',
       content: {
-        title: '一目可视 | 走红网络',
-        date: '2017.10',
-        desc: '创始人周舒扬因心脏插画在网络上迅速走红，引发多家主流媒体争相报道，将医学插画带入大众视野。',
-        coverImg: '/about/2017pic.png',
-        backImg: '/about/2017.png',
+        title: '有效的社会支持系统',
+        date: '2018.03',
+        desc: '社会支持系统是一个最重要的基础，对应的表象才是学习的动机。很多时候我看到的是动机，但藏在下面这个社会支持系统是很难见到的，所以常常会被忽视，这就非常可惜。',
+        coverImg: '/component/4929fe0cf28e69fe433411d441c907af.png',
       },
     },
     {
-      year: 2018,
+      year: '能力与方法',
       content: {
-        title: '一目可视 | 创办一目学院',
+        title: '和成绩有关的两个维度',
+        date: '2018.04',
+        desc: '能力维度指的是，学生真的有没有具体的能力的去解决这个科目所对应的问题。',
+        coverImg: '/component/4cafa03ff31d4cb44d4c89146b54096e.png',
+      },
+    },
+    {
+      year: '生物',
+      content: {
+        title: '随便打开必修一，挑一页',
         date: '2018.05',
-        desc: '创办全国首家医学可视化在线教育平台「一目学院」，专为医学可视化技术爱好者提供专业的技能培训服务，已累计培训学员4000余名。',
-        coverImg: '/about/2018pic.png',
-        backImg: '/about/2018.png',
+        desc: '今天我在这边提出一种可行的可能的方法，实际上我就是通过这样的一个办法，我把我的生物给 K 到了一个顶标水平？',
+        coverImg: '/component/049bd8643b7dcc1d86b0a423c39bc96c.png',
       },
     },
     {
-      year: 2019,
+      year: '练习翻译',
       content: {
-        title: '一目可视 | 荣誉奖项',
-        date: '2019.07',
-        desc: '获北美医学插画协会会展（2019 AMI Salon）广告类Award of Excellence（最高奖项）',
-        coverImg: '/about/2019pic.png',
-        backImg: '/about/2019.png',
+        title: '错误的翻译方法',
+        date: '2018.06',
+        desc: '做阅读题，特别是对于高中和考研英语来讲，重点并不是 ABCD 能不能选对，而是语料究竟有没有透彻的看懂。',
+        coverImg: '/component/201ebdb65d5a2fa669961b28a33ea09f.png',
       },
     },
     {
-      year: 2020,
+      year: '写作练习',
       content: {
-        title: '一目可视 | 百度合作',
-        date: '2020.08',
-        desc: '成为百度健康医典供应商，提供大量优质专业医学科普插画，共同推动医学健康科普事业的发展。',
-        coverImg: '/about/2020pic.png',
-        backImg: '/about/2020.png',
-      },
-    },
-    {
-      year: 2021,
-      content: {
-        title: '一目可视 | 强生合作',
-        date: '2021.09',
-        desc: '成为强生的优质供应商，为各类医疗产品提供高质量定制服务，服务涵盖3D动画、平面设计、产品包装。',
-        coverImg: '/about/2021pic.png',
-        backImg: '/about/2021.png',
-      },
-    },
-    {
-      year: 2022,
-      content: {
-        title: '一目可视 | ELSEVIER',
-        date: '2022.06',
-        desc: '与爱思唯尔联合举办首届"爱MU杯"医学可视化大赛。',
-        coverImg: '/about/2022pic.png',
-        backImg: '/about/2022.png',
+        title: '假设你是李华',
+        date: '2018.07',
+        desc: '通过这种题目很难系统性的训练到「各种时态」的使用，也很难覆盖到所有「常见词汇」和「语法结构」。',
+        coverImg: '/component/21bc9c9b9486c94add9e8a17195c7d65.png',
       },
     },
   ]
@@ -140,8 +124,10 @@ const StepTimeAnimation: React.FC = () => {
 
   return (
     <div className={'h-[1000px] text-textDeep pt-[100px] flex flex-col items-center'}>
-      <p className={'text-[20px]'}>我们的成长</p>
-      <p className={'text-[32px] font-bold mt-5'}>大事记</p>
+      <p className={'text-[20px]'}>StepTimeAnimation</p>
+      <a target={'_blank'} href={'https://sspai.com/post/78288'} className={'text-[32px] font-bold mt-5'}>
+        原文章：抛开分数，看看那些和学习有关的方法、价值和意义
+      </a>
 
       <div className={'flex items-center mt-[120px]'}>
         <div
@@ -220,7 +206,7 @@ const StepTimeAnimation: React.FC = () => {
                     : { background: '#D1D5DC', color: '#5B626D' }
                 }
               >
-                <p className={'absolute top-4 left-[-24px] text-[24px] font-medium'}>{item.year}</p>
+                <p className={'absolute top-8 w-max left-0 -translate-x-1/2 text-[24px] font-medium'}>{item.year}</p>
               </div>
             ))}
           </div>

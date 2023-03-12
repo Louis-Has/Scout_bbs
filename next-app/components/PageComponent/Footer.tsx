@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
             </svg>
           </div>
           {footerSource.map((item, key) => (
-            <a href={item.pathname}>
+            <a href={item.pathname} key={key}>
               <div className={'w-10 h-10 bg-white rounded-full flexCenter'}>
                 <svg className={'icon w-6 h-6'} aria-hidden='true'>
                   <use xlinkHref={'#' + item.icon} />

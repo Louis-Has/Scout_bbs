@@ -13,10 +13,11 @@ const TopContent: React.FC<Props> = (props) => {
   const [modalWe, setModalWe] = useState<boolean>(false)
   return (
     <>
-      <div className={'w-full h-[600px] relative overflow-hidden'} style={props.bodyStyle}>
-        <img src={'/banner.png'} alt={'banner'} className={'w-full h-full object-cover'} />
-
-        <div className={'absoluteCenter flexCenter flex-col text-textWhite text-[24px] font-medium'}>
+      <div
+        className={'w-full h-[600px] flexCenter bg-[url(/banner.png)] bg-cover'}
+        style={props.bodyStyle}
+      >
+        <div className={'flex items-center flex-col text-textWhite text-[24px] font-medium'}>
           <p className={'text-[72px] font-semibold'}>
             <span>Welcome to</span> <span>Yinghao's Park</span>
           </p>

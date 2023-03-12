@@ -20,6 +20,10 @@
 }
 
 @layer base {
+  body {
+    scroll-behavior: smooth;
+  }
+
   .icon {
     width: 1em;
     height: 1em;

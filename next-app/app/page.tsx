@@ -8,6 +8,8 @@ import Modal from 'components/Modal/Modal'
 import Footer from 'components/PageComponent/Footer'
 import FixedTip from 'components/PageComponent/FixedTip'
 import TopContent from 'components/PageComponent/TopContent'
+import ArticleCardContent from 'components/PageComponent/ArticleCardContent'
+import { articleCardType } from 'utils/interface'
 
 const HomePage: React.FC = () => {
   const route = useRouter()
@@ -26,6 +28,21 @@ const HomePage: React.FC = () => {
 
   const [modalWe, setModalWe] = useState<boolean>(false)
 
+  const articleSource: articleCardType[] = [
+    {
+      cover: '/banner.png',
+      title: '现代MVVM框架做了什么',
+      subTitle: '(新建文件夹',
+      pathname: '',
+    },
+    {
+      cover: '/banner.png',
+      title: '函数式组件的意义',
+      subTitle: '(新建文件夹',
+      pathname: '',
+    },
+  ]
+
   return (
     <>
       <Nav turnTransparent={navChange || modalWe} />
@@ -33,7 +50,35 @@ const HomePage: React.FC = () => {
 
       <TopContent buttonOnClick={() => setModalWe(true)} bodyStyle={{ height: '1000px' }} />
 
-      <div className={'h-[200px]'}></div>
+      <div className={'py-20 w-[800px] mx-auto'}>
+        <div className={'w-full flex space-x-5 -mt-32'}>
+          {[
+            { cover: '/banner.png', text: '我的简历' },
+            { cover: '/banner.png', text: '组件详解' },
+            { cover: '/banner.png', text: '语法总结' },
+          ].map((item, key) => (
+            <div
+              className={'h-[144px] bg-fillDeep grow rounded-md bg-cover cursor-pointer group relative'}
+              style={{ backgroundImage: `url(${item.cover})` }}
+              key={key}
+            >
+              <p
+                className={
+                  'text-textWhite absolute top-4 right-4 group-hover:text-[18px] group-hover:right-6 transition-all'
+                }
+              >
+                {item.text}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <ArticleCardContent
+          cardSource={articleSource}
+          onClick={(text) => route.push(text)}
+          bodyStyle={{ marginTop: '80px' }}
+        />
+      </div>
 
       <Footer />
 

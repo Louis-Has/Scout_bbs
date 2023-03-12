@@ -83,9 +83,11 @@ const StepTime: React.FC = () => {
       <FixedTip />
       <TopContent />
 
-      <div className={'h-[200px] bg-fillLight'}>
-        <p>需求：横向滚动展示素材资源，且滑到底露出底部资源，引导感兴趣的用户点击</p>
-        <p>思路：整体监听滚动距离，滚动到内容了把整个内容 sticky 在屏幕中间，再随着滚动把展示内容向左移，露出底部资源</p>
+      <div className={'bg-fillLight p-20'}>
+        <p className={'text-[24px] my-5'}>需求：横向滚动展示素材资源，且滑到底露出底部资源，引导感兴趣的用户点击</p>
+        <p>
+          思路：整体监听滚动距离，滚动到内容了把整个内容 sticky 在屏幕中间，再随着滚动把展示内容向左移，露出底部资源
+        </p>
         <p>1. 按资源的 length 计算出资源区的长度，保证父级 div 的 height 足够</p>
         <p>2. 把资源区的长度和父级 div 的 width 计算，随滚动距离往旁边推</p>
         <p>3. 当资源区剩余部分不足时，把整个 div 收紧，保证 title 在剩余空间居中，且保证底部资源不被遮挡</p>

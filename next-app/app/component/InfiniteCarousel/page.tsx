@@ -9,6 +9,7 @@ import InfiniteWrapper from 'components/InfiniteWrapper/InfiniteWrapper'
 
 const StepTimeAnimation: React.FC = () => {
   const parentDiv = useRef<HTMLDivElement>(null) // wrapperApple
+
   const cooperationSource = [
     {
       direction: true,
@@ -62,12 +63,12 @@ const StepTimeAnimation: React.FC = () => {
       <FixedTip />
       <TopContent />
 
-      <div className={'h-[200px] bg-fillLight'}>
-        <p>需求：实现多条无限滚动栏</p>
+      <div className={'bg-fillLight p-20'} onClick={() => console.log(parentDiv)}>
+        <p className={'text-[24px] my-5'}>需求：实现多条无限滚动栏</p>
         <p>思路：用 setInterval 实现一栏的不断位移，当内容不够时，再复制一组进去</p>
         <p>1. 用 absolute 分别定位元素，方便各自悬浮暂停移动</p>
         <p>2. 通过 位移距离，内容栏，父级 width 的计算，当内容即将不足时，往内容资源再加一组进去</p>
-        <p>3. 为了防止多组元素的渲染压力，判断当前内容是否已经超出可见区域，超出即 display none ，节约性能</p>
+        <p>3. 为了防止多组元素的渲染压力，判断当前内容是否已经超出可见区域，超出即从 Dom 上去掉，节约性能</p>
       </div>
 
       <div className={'h-[640px] bg-fillLight overflow-hidden relative'} ref={parentDiv}>
@@ -77,6 +78,7 @@ const StepTimeAnimation: React.FC = () => {
             top={120 + key * 140}
             parentWidth={parentDiv.current?.clientWidth}
             directionRight={item.direction}
+            key={key}
           />
         ))}
       </div>

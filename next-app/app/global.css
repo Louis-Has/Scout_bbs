@@ -24,6 +24,19 @@
     scroll-behavior: smooth;
   }
 
+  pre {
+    padding: 10px;
+    background-color: #eee;
+    white-space: pre-wrap;
+  }
+
+  :not(pre) > code {
+    font-family: monospace;
+    background-color: #eee;
+    padding: 3px;
+    border: 1px solid #757575;
+  }
+
   .icon {
     width: 1em;
     height: 1em;

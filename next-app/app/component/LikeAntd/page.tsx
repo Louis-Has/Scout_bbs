@@ -13,8 +13,8 @@ const SwitchScrollModal: React.FC = () => {
       <FixedTip />
       <TopContent />
 
-      <div className={'h-[200px] bg-fillLight'}>
-        <p>需求：实现常用组件，大部分可从 Antd 参考</p>
+      <div className={'bg-fillLight p-20'}>
+        <p className={'text-[24px] my-5'}>需求：实现常用组件，大部分可从 Antd 参考</p>
         <p>1. Input 组件，用 isComposing 防止误操作</p>
         <p>2. Modal 组件：用 createPortal 在 body 标签内生成 Modal 元素</p>
         <p>3. Popover</p>

@@ -13,7 +13,7 @@ const StepTime: React.FC = () => {
   const [horRootWidth, setHorRootWidth] = useState<number>(1080)
 
   const handleScrollActive = () => {
-    const totalDistance = 640 * caseSource.length + 1180 - document.documentElement.offsetWidth
+    const totalDistance = 640 * caseSource.length - 740
     setMarginLeft(
       80 -
         Math.max(
@@ -24,7 +24,7 @@ const StepTime: React.FC = () => {
           )
         )
     )
-    setHorRootWidth(totalDistance)
+    setHorRootWidth(totalDistance + 1920 - document.documentElement.offsetWidth)
   }
 
   useEffect(() => {

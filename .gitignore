@@ -2,11 +2,20 @@
 
 # dependencies
 /node_modules
+/dist
 /.pnp
 .pnp.js
 
-# testing
+# Logs
+logs
+*.log
+pnpm-debug.log*
+lerna-debug.log*
+
+# Tests
 /coverage
+/.nyc_output
+
 
 # next.js
 /.next/
@@ -32,3 +41,20 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json

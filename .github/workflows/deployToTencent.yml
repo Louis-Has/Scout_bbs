@@ -3,10 +3,10 @@ name: Docker Next CI
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
-  #  push:
-  #    branches: [ master ]
+  push:
+    branches: [ master ]
   pull_request:
-    branches: [master]
+    branches: [ master ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -45,7 +45,7 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/nest-service-prod
             echo "docker image pull over"
 #            docker rm next-app-prod -f
-            docker rm nest-service-prod -f
+            docker rm -f nest-service-prod
             docker run --name mongo -d -p 27017:27017 -e MONGO_INITDB_DATABASE=${{ secrets.MONGO_DATABASE }} -e MONGO_INITDB_ROOT_USERNAME=${{ secrets.MONGO_USERNAME }} -e MONGO_INITDB_ROOT_PASSWORD=${{ secrets.MONGO_PASSWORD }} --network share-network mongo:latest
             docker run --name next-app-prod -d -p 4422:3000 ${{ secrets.DOCKER_USERNAME }}/next-app-prod
             docker run --name nest-service-prod -d ${{ secrets.DOCKER_USERNAME }}/nest-service-prod

@@ -3,10 +3,10 @@ name: Docker Next CI
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ master ]
+  #  push:
+  #    branches: [ master ]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -28,7 +28,10 @@ jobs:
           docker login -u=${{ secrets.DOCKER_USERNAME }} -p=${{ secrets.DOCKER_PASSWORD }}
           docker compose -f docker-compose.prod.yml build
           docker tag next-app-prod ${{ secrets.DOCKER_USERNAME }}/next-app-prod
+          docker tag nest-service-prod ${{ secrets.DOCKER_USERNAME }}/nest-service-prod
+
           docker push ${{ secrets.DOCKER_USERNAME }}/next-app-prod
+          docker push ${{ secrets.DOCKER_USERNAME }}/nest-service-prod
 
       - name: Deploy to Server
         uses: appleboy/ssh-action@master
@@ -39,9 +42,17 @@ jobs:
           #password: ${{ secrets.TENCENT_HOST_P }}
           script: |
             docker pull ${{ secrets.DOCKER_USERNAME }}/next-app-prod
+            docker pull ${{ secrets.DOCKER_USERNAME }}/nest-service-prod
             echo "docker image pull over"
-            docker stop next-app-prod
-            docker rm next-app-prod
+#            docker rm next-app-prod -f
+            docker rm nest-service-prod -f
+            docker run --name mongo -d -p 27017:27017 -e MONGO_INITDB_DATABASE=${{ secrets.MONGO_DATABASE }} -e MONGO_INITDB_ROOT_USERNAME=${{ secrets.MONGO_USERNAME }} -e MONGO_INITDB_ROOT_PASSWORD=${{ secrets.MONGO_PASSWORD }} --network share-network mongo:latest
             docker run --name next-app-prod -d -p 4422:3000 ${{ secrets.DOCKER_USERNAME }}/next-app-prod
+            docker run --name nest-service-prod -d ${{ secrets.DOCKER_USERNAME }}/nest-service-prod
             docker image prune -f
             docker container prune -f
+
+
+#  --build-arg MONGO_DATABASE=${{ secrets.MONGO_DATABASE }}
+#  --build-arg MONGO_USERNAME=${{ secrets.MONGO_USERNAME }}
+#  --build-arg MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }}

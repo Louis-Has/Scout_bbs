@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   next-app-dev:
@@ -16,13 +16,51 @@ services:
     restart: always
     ports:
       - "4000:3000"
+    depends_on:
+      - nest-service-dev
     networks:
-      - my_network
+      - share-network
 
-  # Add more containers below (nginx, postgres, etc.)
+  nest-service-dev:
+    image: nest-service-dev
+    container_name: nest-service-dev
+    build:
+      context: ./nest-service
+      dockerfile: nest.dev.Dockerfile
+    #    environment:
+    #      ENV_VARIABLE: ${ENV_VARIABLE}
+    env_file:
+      - .env
+    volumes:
+      - ./nest-service/src:/app/src
+    restart: always
+    ports:
+      - "5000:4000"
+    depends_on:
+      - mongo
+    networks:
+      - share-network
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+#    volumes:
+#      - mongodb_data_container:~/data/db
+    env_file:
+      - .env
+    environment:
+      - MONGO_INITDB_DATABASE=${MONGO_DATABASE}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+    ports:
+      - ${MONGO_PORT}:${MONGO_PORT}
+    networks:
+      - share-network
 
 # Define a network, which allows containers to communicate
 # with each other, by using their container name as a hostname
 networks:
-  my_network:
-    external: true
+  share-network:
+#    external: true
+volumes:
+  mongodb_data_container:

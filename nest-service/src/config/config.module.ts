@@ -25,4 +25,4 @@ import { MongooseModule, MongooseModuleOptions } from '@nestjs/mongoose';
     }),
   ],
 })
-export class MongoConfigMoudle {}
+export class MongoConfigModel {}

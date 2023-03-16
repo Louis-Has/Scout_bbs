@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { MongoConfigMoudle } from './config/config.module';
+import { MongoConfigModel } from './config/config.module';
 import { CaseModule } from './case/case.module';
+import { APP_FILTER } from '@nestjs/core';
 
 @Module({
-  imports: [MongoConfigMoudle, CaseModule],
+  imports: [MongoConfigModel, CaseModule],
   controllers: [AppController],
   providers: [AppService],
 })

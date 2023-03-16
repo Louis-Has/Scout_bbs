@@ -1,25 +1,51 @@
-version: '3'
+version: "3"
 
 services:
-  next-app-prod:
-    image: next-app-prod
-    container_name: next-app-prod
+  #  next-app-prod:
+  #    image: next-app-prod
+  #    container_name: next-app-prod
+  #    build:
+  #      context: ./next-app
+  #      dockerfile: prod.Dockerfile
+  #      args:
+  #        ENV_VARIABLE: ${ENV_VARIABLE}
+  #        NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
+  #    restart: always
+  #    ports:
+  #      - "4422:3000"
+  #    networks:
+  #      - share-network
+
+  nest-service-dev:
+    image: nest-service-prod
+    container_name: nest-service-prod
     build:
-      context: ./next-app
-      dockerfile: prod.Dockerfile
-      args:
-        ENV_VARIABLE: ${ENV_VARIABLE}
-        NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
+      context: ./nest-service
+      dockerfile: nest.prod.Dockerfile
     restart: always
     ports:
-      - "4001:3000"
+      - "5000:4000"
+    depends_on:
+      - mongo
     networks:
-      - my_network
+      - share-network
 
-  # Add more containers below (nginx, postgres, etc.)
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    env_file:
+      - .env
+    environment:
+      - MONGO_INITDB_DATABASE=${MONGO_DATABASE}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+    ports:
+      - ${MONGO_PORT}:${MONGO_PORT}
+    networks:
+      - share-network
 
 # Define a network, which allows containers to communicate
 # with each other, by using their container name as a hostname
 networks:
-  my_network:
-    external: true
+  share-network:
+#    external: true

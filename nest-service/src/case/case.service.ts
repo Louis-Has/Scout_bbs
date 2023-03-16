@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { CaseType, QueryCaseDto, QueryCaseResDto } from '../share-type/dto';
+import { HttpException, Injectable } from '@nestjs/common';
+import { CaseType, QueryCaseResDto } from '../share-interface/dto';
 import { Case } from '../schema/schema';
 import { Document, Model } from 'mongoose';
 import { currentTime, getUUID } from 'src/utils';
@@ -27,11 +27,13 @@ export class CaseService {
       release_time: caseType.releaseTime,
     };
 
-    const CaseInsertRet = await this.caseModel.collection.insertOne(
-      caseInsertInfo,
-    );
-
-    if (!Boolean(CaseInsertRet.acknowledged)) console.log(`新增资讯失败`);
+    try {
+      const CaseInsertRet = await this.caseModel.collection.insertOne(
+        caseInsertInfo,
+      );
+    } catch (e) {
+      throw new HttpException('新增资讯失败', 251);
+    }
 
     return await this.caseModel.collection.findOne<Case>({
       id: caseInsertInfo.id,
@@ -65,7 +67,8 @@ export class CaseService {
       { id },
       updates,
     );
-    if (!Boolean(albumUpdateRes.acknowledged)) console.log(`更新资讯失败`);
+    if (!Boolean(albumUpdateRes.acknowledged))
+      console.log(`update case failed`);
 
     return await this.caseModel.collection.findOne<Case>({ id });
   }

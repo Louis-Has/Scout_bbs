@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { CaseService } from './case.service';
-import { CaseType, QueryCaseResDto } from '../share-type/dto';
+import { CaseType, QueryCaseResDto } from '../share-interface/dto';
 import { Case } from '../schema/schema';
 
 @Controller('case')

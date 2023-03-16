@@ -4,9 +4,9 @@ name: Docker Next CI
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -51,8 +51,3 @@ jobs:
             docker run --name nest-service-prod -d ${{ secrets.DOCKER_USERNAME }}/nest-service-prod
             docker image prune -f
             docker container prune -f
-
-
-#  --build-arg MONGO_DATABASE=${{ secrets.MONGO_DATABASE }}
-#  --build-arg MONGO_USERNAME=${{ secrets.MONGO_USERNAME }}
-#  --build-arg MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }}

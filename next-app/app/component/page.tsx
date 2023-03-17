@@ -7,40 +7,40 @@ import Footer from 'components/PageComponent/Footer'
 import FixedTip from 'components/PageComponent/FixedTip'
 import TopContent from 'components/PageComponent/TopContent'
 import ArticleCardContent from 'components/PageComponent/ArticleCardContent'
-import { articleCardType } from 'utils/interface'
+import { ArticleType } from 'utils/interface'
 
 const HomePage: React.FC = () => {
   const route = useRouter()
 
-  const tabSource: articleCardType[] = [
+  const tabSource: ArticleType[] = [
     {
       cover: '/component/InfiniteCarousel.png',
       title: 'InfiniteCarousel',
-      subTitle: '无限横向不定宽滚动',
+      sub_title: '无限横向不定宽滚动',
       pathname: 'InfiniteCarousel',
     },
     {
       cover: '/component/LayerHorizontalMask.png',
       title: 'LayerHorizontalMask',
-      subTitle: '随滚动变化的组合动画',
+      sub_title: '随滚动变化的组合动画',
       pathname: 'LayerHorizontalMask',
     },
     {
       cover: '/component/StepTimeAnimation.png',
       title: 'StepTimeAnimation',
-      subTitle: '分阶段自动可控时间轴展示',
+      sub_title: '分阶段自动可控时间轴展示',
       pathname: 'StepTimeAnimation',
     },
     {
       cover: '/component/ControlledVirtualizedWaterfall.png',
       title: 'ControlledVirtualizedWaterfall',
-      subTitle: '自适应、虚拟化瀑布流',
+      sub_title: '自适应、虚拟化瀑布流',
       pathname: 'Waterfall',
     },
     {
       cover: '/component/LikeAntd.png',
       title: 'like Antd Component',
-      subTitle: '类似 Antd 组件',
+      sub_title: '类似 Antd 组件',
       pathname: 'LikeAntd',
     },
   ]

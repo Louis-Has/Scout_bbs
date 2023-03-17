@@ -15,7 +15,7 @@ services:
       - ./next-app/public:/app/public
     restart: always
     ports:
-      - "4000:3000"
+      - "4422:3000"
     depends_on:
       - nest-service-dev
     networks:
@@ -37,7 +37,7 @@ services:
       - ./nest-service/src:/app/src
     restart: always
     ports:
-      - "5000:4000"
+      - "4000:4000"
     depends_on:
       - mongo
     networks:

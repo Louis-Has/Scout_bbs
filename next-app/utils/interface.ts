@@ -55,9 +55,15 @@ export type questionnaireType = {
   describe: string
 }
 
-export type articleCardType = {
+export class ArticleType {
   cover: string
   title: string
-  subTitle: string
+  sub_title: string
   pathname: string
+}
+
+export class Article extends ArticleType {
+  id: string
+  create_time: number
+  update_time: number
 }

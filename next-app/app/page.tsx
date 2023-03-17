@@ -9,7 +9,8 @@ import Footer from 'components/PageComponent/Footer'
 import FixedTip from 'components/PageComponent/FixedTip'
 import TopContent from 'components/PageComponent/TopContent'
 import ArticleCardContent from 'components/PageComponent/ArticleCardContent'
-import { articleCardType } from 'utils/interface'
+import { Article } from 'utils/interface'
+import { article } from 'utils/apis'
 
 const HomePage: React.FC = () => {
   const route = useRouter()
@@ -28,20 +29,13 @@ const HomePage: React.FC = () => {
 
   const [modalWe, setModalWe] = useState<boolean>(false)
 
-  const articleSource: articleCardType[] = [
-    {
-      cover: '/banner.png',
-      title: '现代MVVM框架做了什么',
-      subTitle: '(新建文件夹',
-      pathname: '',
-    },
-    {
-      cover: '/banner.png',
-      title: '函数式组件的意义',
-      subTitle: '(新建文件夹',
-      pathname: '',
-    },
-  ]
+  const [articleSource, setArticleSource] = useState<Article[]>([])
+
+  useEffect(() => {
+    ;(async () => {
+      await article().then((res) => setArticleSource(res.data.data))
+    })()
+  }, [])
 
   return (
     <>

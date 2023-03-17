@@ -26,3 +26,10 @@ export class QueryCaseResDto {
   total: number;
   current: number;
 }
+
+export class ArticleType {
+  cover: string;
+  title: string;
+  sub_title: string;
+  pathname: string;
+}

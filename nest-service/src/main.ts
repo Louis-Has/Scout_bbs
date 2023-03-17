@@ -7,6 +7,8 @@ const PORT = parseInt(process.env.SERVER_PORT, 10) || 4000;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  app.enableCors();
   app.useGlobalInterceptors(new TransformInterceptor());
   app.useGlobalInterceptors(new LoggingInterceptor());
 

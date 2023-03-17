@@ -8,7 +8,7 @@ export class CaseController {
   constructor(private readonly CaseService: CaseService) {}
 
   @Get(':queryId')
-  async queryAll(@Param('queryId') queryId: string): Promise<QueryCaseResDto> {
+  async queryById(@Param('queryId') queryId: string): Promise<QueryCaseResDto> {
     return await this.CaseService.queryBy(queryId);
   }
 

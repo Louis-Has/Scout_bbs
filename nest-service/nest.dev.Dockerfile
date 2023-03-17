@@ -14,8 +14,12 @@ RUN \
 
 COPY . .
 
-
-# Note: Don't expose ports here, Compose will handle that for us
+ARG MONGO_DATABASE
+ENV MONGO_DATABASE=${MONGO_DATABASE}
+ARG MONGO_USERNAME
+ENV MONGO_USERNAME=${MONGO_USERNAME}
+ARG MONGO_PASSWORD
+ENV MONGO_PASSWORD=${MONGO_PASSWORD}
 
 # Start Next.js in development mode based on the preferred package manager
 RUN \

@@ -9,7 +9,7 @@ services:
       dockerfile: prod.Dockerfile
       args:
         ENV_VARIABLE: ${ENV_VARIABLE}
-        NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
+        NEXT_PUBLIC_ENV_VARIABLE: http://43.143.34.243:5000
     restart: always
     ports:
       - "4422:3000"
@@ -22,6 +22,10 @@ services:
     build:
       context: ./nest-service
       dockerfile: nest.prod.Dockerfile
+      args:
+        MONGO_DATABASE: ${MONGO_DATABASE}
+        MONGO_USERNAME: ${MONGO_USERNAME}
+        MONGO_PASSWORD: ${MONGO_PASSWORD}
     restart: always
     ports:
       - "5000:4000"

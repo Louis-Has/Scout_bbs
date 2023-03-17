@@ -8,17 +8,14 @@ import { MongooseModule, MongooseModuleOptions } from '@nestjs/mongoose';
       imports: [ConfigModule],
       useFactory: (config: ConfigService) => {
         console.log(
-          config.get('MONGO_INITDB_DATABASE'),
-          config.get('MONGO_DATABASE'),
-          config.get('MONGO_USERNAME'),
-          config.get('MONGO_PASSWORD'),
+          'ready to connect to db',
         );
         const mongooseOptions: MongooseModuleOptions = {
           // uri: `mongodb://${config.get('MONGO_HOSTNAME')}`,
           uri: `mongodb://mongo`,
-          dbName: 'information',
-          user: 'root',
-          pass: 'product',
+          dbName: config.get('MONGO_DATABASE'),
+          user: config.get('MONGO_USERNAME'),
+          pass: config.get('MONGO_PASSWORD'),
           authSource: 'admin',
         };
         return mongooseOptions;

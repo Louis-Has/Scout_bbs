@@ -18,6 +18,13 @@ RUN \
 
 COPY . .
 
+ARG MONGO_DATABASE
+ENV MONGO_DATABASE=${MONGO_DATABASE}
+ARG MONGO_USERNAME
+ENV MONGO_USERNAME=${MONGO_USERNAME}
+ARG MONGO_PASSWORD
+ENV MONGO_PASSWORD=${MONGO_PASSWORD}
+
 # Build Next.js based on the preferred package manager
 RUN \
   if [ -f yarn.lock ]; then yarn build; \

@@ -13,9 +13,9 @@ import { MongooseModule, MongooseModuleOptions } from '@nestjs/mongoose';
         const mongooseOptions: MongooseModuleOptions = {
           // uri: `mongodb://${config.get('MONGO_HOSTNAME')}`,
           uri: `mongodb://mongo`,
-          dbName: config.get('MONGO_DATABASE'),
-          user: config.get('MONGO_USERNAME'),
-          pass: config.get('MONGO_PASSWORD'),
+          dbName: config.get('MONGO_DATABASE') || 'information',
+          user: config.get('MONGO_USERNAME') || 'root',
+          pass: config.get('MONGO_PASSWORD') || 'product',
           authSource: 'admin',
         };
         return mongooseOptions;

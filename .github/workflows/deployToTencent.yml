@@ -47,9 +47,9 @@ jobs:
             docker pull mongo:latest
             echo "docker image pull over"
             docker stop next-app-prod
-            docker rm next-app-prod
-            docker stop nest-service-prod
-            docker rm nest-service-prod
+            docker rm -f next-app-prod
+            docker rm -f nest-service-prod
+            docker rm -f mongo
             docker run --name mongo -d -p 27017:27017 -e MONGO_INITDB_DATABASE=${{ secrets.MONGO_DATABASE }} -e MONGO_INITDB_ROOT_USERNAME=${{ secrets.MONGO_USERNAME }} -e MONGO_INITDB_ROOT_PASSWORD=${{ secrets.MONGO_PASSWORD }} --network share-network mongo:latest
             docker run --name next-app-prod -d -p 4422:3000 ${{ secrets.DOCKER_USERNAME }}/next-app-prod
             docker run --name nest-service-prod -d -p 5000:4000 ${{ secrets.DOCKER_USERNAME }}/nest-service-prod

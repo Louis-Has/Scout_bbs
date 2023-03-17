@@ -9,6 +9,9 @@ import { MongooseModule, MongooseModuleOptions } from '@nestjs/mongoose';
       useFactory: (config: ConfigService) => {
         console.log(
           'ready to connect to db',
+          config.get('MONGO_DATABASE'),
+          config.get('MONGO_USERNAME'),
+          config.get('MONGO_PASSWORD'),
         );
         const mongooseOptions: MongooseModuleOptions = {
           // uri: `mongodb://${config.get('MONGO_HOSTNAME')}`,

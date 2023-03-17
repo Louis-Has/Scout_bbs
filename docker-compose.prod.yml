@@ -23,9 +23,9 @@ services:
       context: ./nest-service
       dockerfile: nest.prod.Dockerfile
       args:
-        MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}
-        MONGO_USERNAME: ${{ secrets.MONGO_USERNAME }}
-        MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
+        MONGO_DATABASE: ${MONGO_DATABASE}
+        MONGO_USERNAME: ${MONGO_USERNAME}
+        MONGO_PASSWORD: ${MONGO_PASSWORD}
     restart: always
     ports:
       - "5000:4000"

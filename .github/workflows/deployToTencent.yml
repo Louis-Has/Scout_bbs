@@ -26,11 +26,8 @@ jobs:
       - name: Build the Docker image
         run: |
           docker login -u=${{ secrets.DOCKER_USERNAME }} -p=${{ secrets.DOCKER_PASSWORD }}
-          docker compose -f docker-compose.prod.yml build \
-          --build-arg MONGO_DATABASE=${{ secrets.MONGO_DATABASE }} \
-          --build-arg MONGO_USERNAME=${{ secrets.MONGO_USERNAME }} \
-          --build-arg MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }}
-          
+          docker compose -f docker-compose.prod.yml build           --build-arg MONGO_DATABASE=${{ secrets.MONGO_DATABASE }}           --build-arg MONGO_USERNAME=${{ secrets.MONGO_USERNAME }}          --build-arg MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }}
+
           docker tag next-app-prod ${{ secrets.DOCKER_USERNAME }}/next-app-prod
           docker tag nest-service-prod ${{ secrets.DOCKER_USERNAME }}/nest-service-prod
           echo "docker image build over"

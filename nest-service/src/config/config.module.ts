@@ -13,7 +13,7 @@ import { MongooseModule, MongooseModuleOptions } from '@nestjs/mongoose';
         );
         const mongooseOptions: MongooseModuleOptions = {
           // uri: `mongodb://${config.get('MONGO_HOSTNAME')}`,
-          uri: `mongodb://mongoDB`,
+          uri: `mongodb://mongo`,
           dbName: 'information',
           user: 'root',
           pass: '123123',

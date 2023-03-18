@@ -9,7 +9,7 @@ services:
       dockerfile: prod.Dockerfile
       args:
         ENV_VARIABLE: ${ENV_VARIABLE}
-        NEXT_PUBLIC_ENV_VARIABLE: http://43.143.34.243:4000
+        NEXT_PUBLIC_API_URL: http://43.143.34.243:4000
     restart: always
     ports:
       - "4422:3000"

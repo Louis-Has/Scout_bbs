@@ -47,13 +47,16 @@ const HomePage: React.FC = () => {
       <div className={'py-20 w-[800px] mx-auto'}>
         <div className={'w-full flex space-x-5 -mt-32'}>
           {[
-            { cover: '/banner.png', text: '我的简历' },
-            { cover: '/banner.png', text: '组件详解' },
-            { cover: '/banner.png', text: '语法总结' },
+            { cover: '/banner.png', text: '工作经历', pathname: '' },
+            { cover: '/banner.png', text: '组件详解', pathname: 'component' },
+            { cover: '/banner.png', text: '语法总结', pathname: 'grammar' },
           ].map((item, key) => (
             <div
               className={'h-[144px] bg-fillDeep grow rounded-md bg-cover cursor-pointer group relative'}
               style={{ backgroundImage: `url(${item.cover})` }}
+              onClick={() => {
+                item.pathname.includes('http') ? window.open(item.pathname) : route.push(item.pathname)
+              }}
               key={key}
             >
               <p
@@ -69,7 +72,9 @@ const HomePage: React.FC = () => {
 
         <ArticleCardContent
           cardSource={articleSource}
-          onClick={(text) => route.push(text)}
+          onClick={(text) => {
+            text.includes('http') ? window.open(text) : route.push(text)
+          }}
           bodyStyle={{ marginTop: '80px' }}
         />
       </div>
